@@ -21,7 +21,8 @@ function init() {
     const centerElement = document.getElementById('zero-zero');
 
     const popup = new ol.Overlay({
-        element: popupContainerElement
+        element: popupContainerElement,
+        positioning: 'center-center'
     });
 
     const center = new ol.Overlay({
