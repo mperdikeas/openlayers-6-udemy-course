@@ -7,7 +7,7 @@ function init() {
     const view = new ol.View({
             center: [0, 0],
             zoom: 2,
-            rotation: 0.2
+            rotation: 0.05
     });
 
 
@@ -94,8 +94,33 @@ function init() {
                     })
                     , extent: [-1657995.2205450558, 1778391.2389463931, 5290999.002317872, 4229197.619433608]
                     , opacity: 0.7
+                    , visible: true
                 });
-            })()
+            })(),
+            (()=>{
+                // tile debug
+                return new ol.layer.Tile({
+                    source: new ol.source.TileDebug()
+                    , opacity: 0.5
+                });
+            })(),
+            // Stamen layers, method 1 of 2
+            new ol.layer.Tile({
+                source: new ol.source.XYZ({
+                    url: 'http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg'
+                })
+                , opacity: 0.8
+                , extent: [4387581.219422519, 4161833.1451840755
+                           , 9698443.261144815,9814975.276913421]
+            }),
+            // Stamen layers, method 2 of 2
+            new ol.layer.Tile({
+                source: new ol.source.Stamen({
+                    layer: 'toner'
+                })
+                , opacity: 0.8
+                , extent: [1387581, 1161833, 5698443, 4814975]
+            })
         ]});
 
     const button = document.getElementById('btn');
